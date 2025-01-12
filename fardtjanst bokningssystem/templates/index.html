@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bokningssystem</title>
+</head>
+<body>
+    <h1>Bokningssystem</h1>
+
+    <form action="/add" method="POST">
+        <label for="name">Namn:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="date_time">Datum och tid:</label>
+        <input type="text" id="date_time" name="date_time" placeholder="YYYY-MM-DD HH:MM" required><br>
+
+        <button type="submit">Lägg till bokning</button>
+    </form>
+
+    <h2>Alla bokningar:</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.name }} - {{ booking.date_time }}
+                <a href="/delete/{{ loop.index0 }}">Ta bort</a>
+            </li>
+        {% else %}
+            <li>Inga bokningar ännu!</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
